@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://dati.webservices.cart.seda.com/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	targetNamespace="http://dati.webservices.cart.seda.com/"
+	elementFormDefault="qualified">
+	<xs:element name="addItem" type="tns:addItem" />
+	<xs:element name="addItemResponse" type="tns:addItemResponse" />
+	<xs:element name="deleteItem" type="tns:deleteItem" />
+	<xs:element name="deleteItemResponse" type="tns:deleteItemResponse" />
+	<xs:element name="getItems" type="tns:getItems" />
+	<xs:element name="getItemsResponse" type="tns:getItemsResponse" />
+	<xs:element name="purgeCart" type="tns:purgeCart" />
+	<xs:element name="purgeCartResponse" type="tns:purgeCartResponse" />
+	<xs:element name="updateItem" type="tns:updateItem" />
+	<xs:element name="updateItemResponse" type="tns:updateItemResponse" />
+	<xs:complexType name="getItems">
+		<xs:sequence>
+			<xs:element name="arg0" type="tns:getItemsWSRequest" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getItemsWSRequest">
+		<xs:complexContent>
+			<xs:extension base="tns:cartRequest">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="cartRequest">
+		<xs:sequence>
+			<xs:element name="cartSessionId" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="13"></xs:minLength>
+						<xs:maxLength value="13"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="securityToken" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="28"></xs:minLength>
+						<xs:maxLength value="28"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	
+			<xs:element name="codiceSocieta" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"></xs:minLength>
+						<xs:maxLength value="5"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="canalePagamento" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="3"></xs:minLength>
+						<xs:maxLength value="3"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getItemsResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:getItemsWSResponse" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getItemsWSResponse">
+		<xs:complexContent>
+			<xs:extension base="tns:cartResponse">
+				<xs:sequence>
+					<xs:element name="items" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="cartResponse">
+		<xs:sequence>
+			<xs:element name="cartSessionId" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="13"></xs:minLength>
+						<xs:maxLength value="13"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="responseCode" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"></xs:minLength>
+						<xs:maxLength value="4"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="responseMessage" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="securityToken" nillable="true" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="28"></xs:minLength>
+						<xs:maxLength value="28"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="item">
+		<xs:sequence>
+			<xs:element name="attributeList" type="tns:itemAttribute" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="chiaveEnte" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="10"></xs:minLength>
+						<xs:maxLength value="10"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="codiceImpostaServizio" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="2"></xs:minLength>
+						<xs:maxLength value="2"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="codiceTipologiaServizio" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="3"></xs:minLength>
+						<xs:maxLength value="3"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="codiceUtente" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5"></xs:minLength>
+						<xs:maxLength value="5"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="descrizione" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"></xs:minLength>
+						<xs:maxLength value="255"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="idItem" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="13"></xs:minLength>
+						<xs:maxLength value="13"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="prezzo" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:totalDigits value='6' />
+              			<xs:fractionDigits value='2' />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="quantita" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"></xs:minInclusive>
+						<xs:maxInclusive value="10"></xs:maxInclusive>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="tipoBollettino" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="4"></xs:minLength>
+						<xs:maxLength value="4"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="itemAttribute">
+		<xs:sequence>
+			<xs:element name="key" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"></xs:minLength>
+						<xs:maxLength value="255"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value" nillable="true" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="0"></xs:minLength>
+						<xs:maxLength value="255"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteItem">
+		<xs:sequence>
+			<xs:element name="arg0" type="tns:deleteItemWSRequest" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteItemWSRequest">
+		<xs:complexContent>
+			<xs:extension base="tns:cartRequest">
+				<xs:sequence>
+					<xs:element name="item" type="tns:item" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="deleteItemResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:deleteItemWSResponse" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteItemWSResponse">
+		<xs:complexContent>
+			<xs:extension base="tns:cartResponse">
+				<xs:sequence>
+					<xs:element name="items" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="purgeCart">
+		<xs:sequence>
+			<xs:element name="arg0" type="tns:purgeCartWSRequest" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="purgeCartWSRequest">
+		<xs:complexContent>
+			<xs:extension base="tns:cartRequest">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="purgeCartResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:purgeCartWSResponse" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="purgeCartWSResponse">
+		<xs:complexContent>
+			<xs:extension base="tns:cartResponse">
+				<xs:sequence>
+					<xs:element name="items" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="addItem">
+		<xs:sequence>
+			<xs:element name="arg0" type="tns:addItemWSRequest" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addItemWSRequest">
+		<xs:complexContent>
+			<xs:extension base="tns:cartRequest">
+				<xs:sequence>
+					<xs:element name="item" type="tns:item" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="addItemResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:addItemWSResponse" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addItemWSResponse">
+		<xs:complexContent>
+			<xs:extension base="tns:cartResponse">
+				<xs:sequence>
+					<xs:element name="items" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="updateItem">
+		<xs:sequence>
+			<xs:element name="arg0" type="tns:updateItemWSRequest" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="updateItemWSRequest">
+		<xs:complexContent>
+			<xs:extension base="tns:cartRequest">
+				<xs:sequence>
+					<xs:element name="item" type="tns:item" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="updateItemResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:updateItemWSResponse" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="updateItemWSResponse">
+		<xs:complexContent>
+			<xs:extension base="tns:cartResponse">
+				<xs:sequence>
+					<xs:element name="items" type="tns:item" nillable="true" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

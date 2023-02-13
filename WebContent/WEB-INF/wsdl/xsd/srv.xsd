@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://srv.webservices.cart.seda.com" 
+			xmlns:tns="http://srv.webservices.cart.seda.com"
+			elementFormDefault="qualified" 
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:complexType name="FaultType">
+		<xsd:sequence>
+  			<xsd:element name="code" type="xsd:int" nillable="true"/>
+  			<xsd:element name="message" type="xsd:string" nillable="true"/>
+  			<xsd:element name="securityToken" type="xsd:string" nillable="true"/>
+  		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="Fault" type="tns:FaultType"/>
+
+</xsd:schema>

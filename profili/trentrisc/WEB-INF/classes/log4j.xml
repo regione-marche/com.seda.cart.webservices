@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="true">
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c %x - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="DEBUG"/>
+		<param name="File" value="D:\Applications\Pagonet2\Log\providerIT\serviceprovider.log"/>
+		<param name="Append" value="true"/>
+		<param name="DatePattern" value="'.'yyyy-ww"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %-5p %c %x - %m%n"/>
+		</layout>
+	</appender> 
+
+	<logger name="it.federa">
+        <level value="DEBUG" /> 
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+    </logger>
+
+	<logger name="it.cefriel">
+        <level value="DEBUG" /> 
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+    </logger>
+
+</log4j:configuration>

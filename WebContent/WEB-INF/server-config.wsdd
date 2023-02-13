@@ -1,0 +1,353 @@
+<ns1:deployment 
+xmlns="http://xml.apache.org/axis/wsdd/" 
+xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" 
+xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <!--ns1:parameter name="attachments.Directory" value="temp"/-->
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ 
+ <!-- Services from WebServiceCartService WSDL service -->
+
+  <service name="cart" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://source.webservices.cart.seda.com/"/>
+      <parameter name="wsdlServiceElement" value="WebServiceCartService"/>
+      <parameter name="schemaQualified" value="http://srv.webservices.cart.seda.com,http://dati.webservices.cart.seda.com/"/>
+      <parameter name="schemaUnqualified" value="http://source.webservices.cart.seda.com/"/>
+      <parameter name="wsdlServicePort" value="WebServiceCartPort"/>
+      <parameter name="className" value="com.seda.cart.webservices.source.WebServiceCartPortBindingImpl"/>
+      <parameter name="wsdlPortType" value="WebServiceCart"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addItem" qname="operNS:addItem" xmlns:operNS="http://dati.webservices.cart.seda.com/" returnQName="retNS:return" xmlns:retNS="http://dati.webservices.cart.seda.com/" returnType="rtns:addItemWSResponse" xmlns:rtns="http://dati.webservices.cart.seda.com/" soapAction="" >
+        <parameter qname="pns:arg0" xmlns:pns="http://dati.webservices.cart.seda.com/" type="tns:addItemWSRequest" xmlns:tns="http://dati.webservices.cart.seda.com/"/>
+        <fault name="ItemNotFoundException" qname="fns:Fault" xmlns:fns="http://srv.webservices.cart.seda.com" class="com.seda.cart.webservices.srv.FaultType" type="tns:FaultType" xmlns:tns="http://srv.webservices.cart.seda.com"/>
+      </operation>
+      <operation name="getItems" qname="operNS:getItems" xmlns:operNS="http://dati.webservices.cart.seda.com/" returnQName="retNS:return" xmlns:retNS="http://dati.webservices.cart.seda.com/" returnType="rtns:getItemsWSResponse" xmlns:rtns="http://dati.webservices.cart.seda.com/" soapAction="" >
+        <parameter qname="pns:arg0" xmlns:pns="http://dati.webservices.cart.seda.com/" type="tns:getItemsWSRequest" xmlns:tns="http://dati.webservices.cart.seda.com/"/>
+        <fault name="ItemNotFoundException" qname="fns:Fault" xmlns:fns="http://srv.webservices.cart.seda.com" class="com.seda.cart.webservices.srv.FaultType" type="tns:FaultType" xmlns:tns="http://srv.webservices.cart.seda.com"/>
+      </operation>
+      <operation name="deleteItem" qname="operNS:deleteItem" xmlns:operNS="http://dati.webservices.cart.seda.com/" returnQName="retNS:return" xmlns:retNS="http://dati.webservices.cart.seda.com/" returnType="rtns:deleteItemWSResponse" xmlns:rtns="http://dati.webservices.cart.seda.com/" soapAction="" >
+        <parameter qname="pns:arg0" xmlns:pns="http://dati.webservices.cart.seda.com/" type="tns:deleteItemWSRequest" xmlns:tns="http://dati.webservices.cart.seda.com/"/>
+        <fault name="ItemNotFoundException" qname="fns:Fault" xmlns:fns="http://srv.webservices.cart.seda.com" class="com.seda.cart.webservices.srv.FaultType" type="tns:FaultType" xmlns:tns="http://srv.webservices.cart.seda.com"/>
+      </operation>
+      <operation name="updateItem" qname="operNS:updateItem" xmlns:operNS="http://dati.webservices.cart.seda.com/" returnQName="retNS:return" xmlns:retNS="http://dati.webservices.cart.seda.com/" returnType="rtns:updateItemWSResponse" xmlns:rtns="http://dati.webservices.cart.seda.com/" soapAction="" >
+        <parameter qname="pns:arg0" xmlns:pns="http://dati.webservices.cart.seda.com/" type="tns:updateItemWSRequest" xmlns:tns="http://dati.webservices.cart.seda.com/"/>
+        <fault name="ItemNotFoundException" qname="fns:Fault" xmlns:fns="http://srv.webservices.cart.seda.com" class="com.seda.cart.webservices.srv.FaultType" type="tns:FaultType" xmlns:tns="http://srv.webservices.cart.seda.com"/>
+      </operation>
+      <operation name="purgeCart" qname="operNS:purgeCart" xmlns:operNS="http://dati.webservices.cart.seda.com/" returnQName="retNS:return" xmlns:retNS="http://dati.webservices.cart.seda.com/" returnType="rtns:purgeCartWSResponse" xmlns:rtns="http://dati.webservices.cart.seda.com/" soapAction="" >
+        <parameter qname="pns:arg0" xmlns:pns="http://dati.webservices.cart.seda.com/" type="tns:purgeCartWSRequest" xmlns:tns="http://dati.webservices.cart.seda.com/"/>
+        <fault name="ItemNotFoundException" qname="fns:Fault" xmlns:fns="http://srv.webservices.cart.seda.com" class="com.seda.cart.webservices.srv.FaultType" type="tns:FaultType" xmlns:tns="http://srv.webservices.cart.seda.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="deleteItem getItems purgeCart addItem updateItem"/>
+
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:cartRequest"
+        type="java:com.seda.cart.webservices.dati.CartRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:itemAttribute"
+        type="java:com.seda.cart.webservices.dati.ItemAttribute"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>itemAttribute>value"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartRequest>canalePagamento"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>codiceUtente"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartResponse>securityToken"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>codiceImpostaServizio"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:addItemWSRequest"
+        type="java:com.seda.cart.webservices.dati.AddItemWSRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>idItem"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:deleteItemWSRequest"
+        type="java:com.seda.cart.webservices.dati.DeleteItemWSRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:cartResponse"
+        type="java:com.seda.cart.webservices.dati.CartResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>chiaveEnte"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>prezzo"
+        type="java:java.math.BigDecimal"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>tipoBollettino"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartRequest>codiceSocieta"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>codiceTipologiaServizio"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:purgeCartWSResponse"
+        type="java:com.seda.cart.webservices.dati.PurgeCartWSResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:getItemsWSResponse"
+        type="java:com.seda.cart.webservices.dati.GetItemsWSResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:getItemsWSRequest"
+        type="java:com.seda.cart.webservices.dati.GetItemsWSRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://srv.webservices.cart.seda.com"
+        qname="ns:FaultType"
+        type="java:com.seda.cart.webservices.srv.FaultType"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:addItemWSResponse"
+        type="java:com.seda.cart.webservices.dati.AddItemWSResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:purgeCartWSRequest"
+        type="java:com.seda.cart.webservices.dati.PurgeCartWSRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartResponse>responseMessage"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartRequest>cartSessionId"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartResponse>cartSessionId"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>quantita"
+        type="java:int"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartRequest>securityToken"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:deleteItemWSResponse"
+        type="java:com.seda.cart.webservices.dati.DeleteItemWSResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>item>descrizione"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:updateItemWSResponse"
+        type="java:com.seda.cart.webservices.dati.UpdateItemWSResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:updateItemWSRequest"
+        type="java:com.seda.cart.webservices.dati.UpdateItemWSRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:item"
+        type="java:com.seda.cart.webservices.dati.Item"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>cartResponse>responseCode"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dati.webservices.cart.seda.com/"
+        qname="ns:>itemAttribute>key"
+        type="java:java.lang.String"
+        serializer="org.apache.axis.encoding.ser.SimpleSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.SimpleDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+ 
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://source.webservices.cart.seda.com/" 
+	xmlns:sd="http://dati.webservices.cart.seda.com/" 
+	xmlns:srv="http://srv.webservices.cart.seda.com" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://source.webservices.cart.seda.com/" name="WebServiceCartService" >
+	
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://source.webservices.cart.seda.com/" >
+			<xsd:import namespace="http://dati.webservices.cart.seda.com/" schemaLocation="xsd/cart.xsd"/>
+			<xsd:import namespace="http://srv.webservices.cart.seda.com" schemaLocation="xsd/srv.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	
+	<wsdl:message name="addItem">
+		<wsdl:part name="parameters" element="sd:addItem" />
+	</wsdl:message>
+	<wsdl:message name="addItemResponse">
+		<wsdl:part name="parameters" element="sd:addItemResponse" />
+	</wsdl:message>
+	<wsdl:message name="getItems">
+		<wsdl:part name="parameters" element="sd:getItems" />
+	</wsdl:message>
+	<wsdl:message name="getItemsResponse">
+		<wsdl:part name="parameters" element="sd:getItemsResponse" />
+	</wsdl:message>
+	<wsdl:message name="deleteItem">
+		<wsdl:part name="parameters" element="sd:deleteItem" />
+	</wsdl:message>
+	<wsdl:message name="deleteItemResponse">
+		<wsdl:part name="parameters" element="sd:deleteItemResponse" />
+	</wsdl:message>
+	<wsdl:message name="updateItem">
+		<wsdl:part name="parameters" element="sd:updateItem" />
+	</wsdl:message>
+	<wsdl:message name="updateItemResponse">
+		<wsdl:part name="parameters" element="sd:updateItemResponse" />
+	</wsdl:message>
+	<wsdl:message name="purgeCart">
+		<wsdl:part name="parameters" element="sd:purgeCart" />
+	</wsdl:message>
+	<wsdl:message name="purgeCartResponse">
+		<wsdl:part name="parameters" element="sd:purgeCartResponse" />
+	</wsdl:message>
+	<wsdl:message name="Fault">
+		<wsdl:part name="fault" element="srv:Fault"/>
+	</wsdl:message>
+	
+	<wsdl:portType name="WebServiceCart">
+		<wsdl:operation name="addItem">
+			<wsdl:input message="tns:addItem" />
+			<wsdl:output message="tns:addItemResponse" />
+			<wsdl:fault name="ItemNotFoundException" message="tns:Fault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getItems">
+			<wsdl:input message="tns:getItems" />
+			<wsdl:output message="tns:getItemsResponse" />
+			<wsdl:fault name="ItemNotFoundException" message="tns:Fault"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteItem">
+			<wsdl:input message="tns:deleteItem" />
+			<wsdl:output message="tns:deleteItemResponse" />
+			<wsdl:fault name="ItemNotFoundException" message="tns:Fault"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateItem">
+			<wsdl:input message="tns:updateItem" />
+			<wsdl:output message="tns:updateItemResponse" />
+			<wsdl:fault name="ItemNotFoundException" message="tns:Fault"/>
+		</wsdl:operation>
+		<wsdl:operation name="purgeCart">
+			<wsdl:input message="tns:purgeCart" />
+			<wsdl:output message="tns:purgeCartResponse" />
+			<wsdl:fault name="ItemNotFoundException" message="tns:Fault"/>
+		</wsdl:operation>
+		</wsdl:portType>
+
+		<wsdl:binding name="WebServiceCartPortBinding" type="tns:WebServiceCart">
+			<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+			<wsdl:operation name="addItem">
+				<soap:operation soapAction="" />
+				<wsdl:input>
+					<soap:body use="literal" />
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal" />
+				</wsdl:output>
+				<wsdl:fault name="ItemNotFoundException">
+					<soap:fault name="ItemNotFoundException" use="literal" />
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="getItems">
+			<soap:operation soapAction="" />
+				<wsdl:input>
+					<soap:body use="literal" />
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal" />
+				</wsdl:output>
+				<wsdl:fault name="ItemNotFoundException">
+					<soap:fault name="ItemNotFoundException" use="literal" />
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="deleteItem">
+				<soap:operation soapAction="" />
+				<wsdl:input>
+					<soap:body use="literal" />
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal" />
+				</wsdl:output>
+				<wsdl:fault name="ItemNotFoundException">
+					<soap:fault name="ItemNotFoundException" use="literal" />
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="updateItem">
+				<soap:operation soapAction="" />
+				<wsdl:input>
+					<soap:body use="literal" />
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal" />
+				</wsdl:output>
+				<wsdl:fault name="ItemNotFoundException">
+					<soap:fault name="ItemNotFoundException" use="literal" />
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="purgeCart">
+				<soap:operation soapAction="" />
+				<wsdl:input>
+					<soap:body use="literal" />
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal" />
+				</wsdl:output>
+					<wsdl:fault name="ItemNotFoundException">
+				<soap:fault name="ItemNotFoundException" use="literal" />
+				</wsdl:fault>
+			</wsdl:operation>
+		</wsdl:binding>
+			
+		<wsdl:service name="WebServiceCartService">
+			<wsdl:port name="WebServiceCartPort" binding="tns:WebServiceCartPortBinding">
+				<soap:address location="http://localhost:8080/CartService/cart" />
+			</wsdl:port>
+		</wsdl:service>
+</wsdl:definitions>
