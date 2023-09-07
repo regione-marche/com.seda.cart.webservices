@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.seda.cart.webservices</groupId>
 	<artifactId>com.seda.cart.webservices</artifactId>
-	<version>1.0</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>com.seda.cart.webservices</name>
 	<description>com.seda.cart.webservices</description>
