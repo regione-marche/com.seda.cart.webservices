@@ -29,8 +29,11 @@ import com.seda.cart.webservices.dati.UpdateItemWSResponse;
 import com.seda.cart.webservices.handler.WebServiceHandler;
 
 public class WebServiceCartPortBindingImpl extends WebServiceHandler implements com.seda.cart.webservices.source.WebServiceCart{
+
 	//inizio LP PG200070 - 20200812
 	private CarrelloVirtualeBean carrelloFacade = null;
+
+	
 
 	private CarrelloVirtualeBean getFacadeService() throws Exception
 	{
