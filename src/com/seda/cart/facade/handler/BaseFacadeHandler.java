@@ -2,8 +2,8 @@ package com.seda.cart.facade.handler;
 
 import java.sql.Connection;
 
-import org.apache.logging.log4j.Logger;
-
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.properties.tree.PropertiesTree;
 import com.seda.data.dao.DAOHelper;
 import com.seda.j2ee5.jndi.JndiProxy;
@@ -17,7 +17,7 @@ public abstract class BaseFacadeHandler {
 
 	protected PropertiesTree propertiesTree;
 	
-	protected Logger logger;
+	protected LoggerWrapper logger = CustomLoggerManager.get(BaseFacadeHandler.class);
 	/*
 	protected SessionContext ctx;
 	
