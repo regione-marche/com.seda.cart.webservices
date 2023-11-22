@@ -7,26 +7,17 @@
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
-        <RollingFile name="com-seda-cart-ws-soap"
-                	  fileName="../standalone/log/com-seda-cart-ws-soap.log"
-                	  filePattern="%d{yyyy-MM-dd}-com-seda-cart-ws-soap.%i.log.gz"
-                	  ignoreExceptions="false" filePermissions="rw-rw-r--">
-			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="500MB" />
-            </Policies>
-            <ThresholdFilter level="INFO"/>
-        </RollingFile>
         <RollingFile name="com-seda-cart-ws"
                 	  fileName="../standalone/log/com-seda-cart-ws.log"
-                	  filePattern="mgp.%i.log.gz"
+                	  filePattern="%d{yyyy-MM-dd}-com-seda-cart-ws.%i.log.gz"
                 	  ignoreExceptions="false" filePermissions="rw-rw-r--">
             <PatternLayout pattern="${LOG_PATTERN}"/>
 			<!-- <JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/> -->
             <Policies>
-                <SizeBasedTriggeringPolicy size="500MB" />
+                <SizeBasedTriggeringPolicy size="60MB" />
             </Policies>
-            <DefaultRolloverStrategy max="10" />
+            <!-- <DefaultRolloverStrategy max="10" /> -->
+            <ThresholdFilter level="INFO"/>
         </RollingFile>
         <RollingFile name="com-seda-cart-ws-error"
                 	 fileName="../standalone/log/com-seda-cart-ws-error.log"
@@ -34,38 +25,30 @@
                      ignoreExceptions="false" filePermissions="rw-rw-r--">
 			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
             <Policies>
-                <SizeBasedTriggeringPolicy size="200MB" />
+                <SizeBasedTriggeringPolicy size="60MB" />
             </Policies>
             <ThresholdFilter level="ERROR"/>
         </RollingFile>
         <RollingFile name="com-seda-cart-ws-debug"
                 	 fileName="../standalone/log/com-seda-cart-ws-debug.log"
-                	 filePattern="com-seda-cart-ws-error.%i.log"
+                	 filePattern="com-seda-cart-ws-debug.%i.log"
                      ignoreExceptions="false" filePermissions="rw-rw-r--">
 			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
             <Policies>
-                <SizeBasedTriggeringPolicy size="500MB" />
+                <SizeBasedTriggeringPolicy size="60MB" />
             </Policies>
             <ThresholdFilter level="DEBUG"/>
             <DefaultRolloverStrategy max="10" />
         </RollingFile>
     </Appenders>
     <Loggers>
-		<Logger name="com.seda.cart" level="INFO" additivity="false">
+		<Logger name="com.seda.cart" level="DEBUG" additivity="false">
 			<AppenderRef ref="com-seda-cart-ws" />
+            <!-- <AppenderRef ref="com-seda-cart-ws-debug" /> -->
             <AppenderRef ref="com-seda-cart-ws-error" />
 		</Logger>         
-		<Logger name="com.seda.cart.webservices.listener" level="DEBUG" additivity="false">
-			<AppenderRef ref="com-seda-cart-ws-debug" />
-		</Logger>         
-		<Logger name="org.apache.cxf.services" level="INFO" additivity="false">
-			<AppenderRef ref="com-seda-cart-ws-soap" />
-		</Logger>         
-		<Logger name="com.seda.payer.core.dao" level="INFO" additivity="false">
-			<AppenderRef ref="com-seda-cart-ws-dao" />
-		</Logger>         
         <Root level="INFO" >
-            <AppenderRef ref="STDOUT" />
+            <AppenderRef ref="com-seda-cart-ws" />
         </Root>
     </Loggers>
 </Configuration>
