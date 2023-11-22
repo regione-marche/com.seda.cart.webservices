@@ -29,18 +29,6 @@
             </Policies>
             <ThresholdFilter level="ERROR"/>
         </RollingFile>
-        <RollingFile name="com-seda-cart-ws-debug"
-                	 fileName="../standalone/log/com-seda-cart-ws-debug.log"
-                	 filePattern="com-seda-cart-ws-debug.%i.log"
-                     ignoreExceptions="false" filePermissions="rw-rw-r--">
-			<JsonTemplateLayout eventTemplateUri="classpath:ElasticsearchJsonEventLayoutV1.json"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="60MB" />
-            </Policies>
-            <ThresholdFilter level="DEBUG"/>
-            <DefaultRolloverStrategy max="10" />
-        </RollingFile>
-    </Appenders>
     <Loggers>
 		<Logger name="com.seda.cart" level="DEBUG" additivity="false">
 			<AppenderRef ref="com-seda-cart-ws" />
