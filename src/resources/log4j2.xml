@@ -29,6 +29,7 @@
             </Policies>
             <ThresholdFilter level="ERROR"/>
         </RollingFile>
+    </Appenders>
     <Loggers>
 		<Logger name="com.seda.cart" level="DEBUG" additivity="false">
 			<AppenderRef ref="com-seda-cart-ws" />
@@ -36,7 +37,7 @@
             <AppenderRef ref="com-seda-cart-ws-error" />
 		</Logger>         
         <Root level="INFO" >
-            <AppenderRef ref="com-seda-cart-ws" />
+            <AppenderRef ref="STDOUT" />
         </Root>
     </Loggers>
 </Configuration>
