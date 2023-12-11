@@ -35,7 +35,7 @@ public abstract class WebServiceHandler extends JaxRpc10WebServiceHandler {
 
 		super.init(endPointContext);
 		webServiceContext = new WebServiceContext(endPointContext);
-    	logger(loggerContextName);
+    	// logger(loggerContextName);
     	propertiesTree(treeContextName);
     	
     	setDbSchemaCodSocieta(endPointContext);

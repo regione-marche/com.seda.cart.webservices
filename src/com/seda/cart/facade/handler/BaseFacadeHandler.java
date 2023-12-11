@@ -1,12 +1,10 @@
 package com.seda.cart.facade.handler;
 
 import java.sql.Connection;
-import java.util.Properties;
-import org.apache.log4j.Logger;
 
-import com.seda.cart.webservices.config.PrintStrings;
+import com.seda.commons.logger.CustomLoggerManager;
+import com.seda.commons.logger.LoggerWrapper;
 import com.seda.commons.properties.tree.PropertiesTree;
-import com.seda.compatibility.SystemVariable;
 import com.seda.data.dao.DAOHelper;
 import com.seda.j2ee5.jndi.JndiProxy;
 import com.seda.j2ee5.jndi.JndiProxyException;
@@ -19,7 +17,7 @@ public abstract class BaseFacadeHandler {
 
 	protected PropertiesTree propertiesTree;
 	
-	protected Logger logger;
+	protected LoggerWrapper logger = CustomLoggerManager.get(BaseFacadeHandler.class);
 	/*
 	protected SessionContext ctx;
 	
@@ -70,7 +68,7 @@ public abstract class BaseFacadeHandler {
 //            Hierarchy hierarchy = loggerHierarchyServer.configure(log4jConfiguration);
 //            logger = hierarchy.getLogger("FILE");
             
-            logger = Logger.getLogger("FILE");
+            // logger = org.apache.logging.log4j.core.Logger.getLogger("FILE");
             
             logger.info("<com.seda.payer.facade  - applicationStartup>");
             
